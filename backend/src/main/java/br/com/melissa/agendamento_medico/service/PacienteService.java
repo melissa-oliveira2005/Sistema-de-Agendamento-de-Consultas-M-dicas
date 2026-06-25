@@ -2,6 +2,7 @@ package br.com.melissa.agendamento_medico.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.com.melissa.agendamento_medico.entity.Paciente;
@@ -17,7 +18,7 @@ public class PacienteService {
     }
 
     public List<Paciente> listarTodos() {
-        return repository.findAll();
+        return repository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
     public Paciente salvar(Paciente paciente) {

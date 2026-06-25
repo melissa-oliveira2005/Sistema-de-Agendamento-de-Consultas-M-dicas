@@ -1,14 +1,38 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Agendamento Médico</title>
+    <title>Sistema de Agendamento Médico</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
 </head>
+
 <body>
 
-    <h1>Sistema de Agendamento de Consultas Médicas</h1>
+<div class="container mt-5">
 
-    <p>Projeto desenvolvido com Spring Boot e Thymeleaf.</p>
+    <h1>Sistema de Agendamento Médico</h1>
+
+    <hr>
+
+    <div class="d-grid gap-3">
+
+        <a href="/pagina-pacientes" class="btn btn-primary">
+            Pacientes
+        </a>
+
+        <a href="/pagina-medicos" class="btn btn-success">
+            Médicos
+        </a>
+
+        <a href="/pagina-consultas" class="btn btn-warning">
+            Consultas
+        </a>
+
+    </div>
+
+</div>
 
 </body>
 </html>

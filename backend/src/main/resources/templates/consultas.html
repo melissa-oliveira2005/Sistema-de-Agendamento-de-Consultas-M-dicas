@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Consultas</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+<h2>Agendamento de Consulta</h2>
+
+<div th:if="${mensagem}"
+class="alert alert-success">
+
+<span th:text="${mensagem}"></span>
+
+</div>
+
+<form th:action="@{/consultas/salvar}"
+th:object="${consulta}"
+method="post">
+
+<div class="mb-3">
+
+<label>Paciente</label>
+
+<select class="form-control"
+th:field="*{paciente.id}"
+
+<option value="">Selecione</option>
+
+<option
+th:each="paciente : ${pacientes}"
+th:value="${paciente.id}"
+th:text="${paciente.nome}">
+
+</option>
+
+</select>
+
+</div>
+
+
+<div class="mb-3">
+
+<label>Médico</label>
+
+<select class="form-control"
+th:field="*{medico.id}"
+
+<option value="">Selecione</option>
+
+<option
+th:each="medico : ${medicos}"
+th:value="${medico.id}"
+th:text="${medico.nome}">
+
+</option>
+
+</select>
+
+</div>
+
+<div class="mb-3">
+
+<label>Data e Hora</label>
+
+<input
+type="datetime-local"
+class="form-control"
+th:field="*{dataHora}">
+</div>
+
+<button
+class="btn btn-success">
+
+Agendar
+
+</button>
+
+</form>
+
+<hr>
+
+<h4>Consultas agendadas</h4>
+
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <th>Paciente</th>
+            <th>Médico</th>
+            <th>Data/Hora</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr th:each="c : ${listaConsultas}">
+            <td th:text="${c.paciente.nome}"></td>
+            <td th:text="${c.medico.nome}"></td>
+            <td th:text="${c.dataHora}"></td>
+        </tr>
+    </tbody>
+
+</table>
+
+<a href="/pagina-consultas" class="btn btn-secondary mb-3">
+    Recarregar
+</a>
+
+<br>
+
+<a href="/" class="btn btn-outline-dark">Home</a>
+<a href="/pagina-pacientes" class="btn btn-outline-primary">Pacientes</a>
+<a href="/pagina-medicos" class="btn btn-outline-primary">Médicos</a>
+
+</div>
+
+</body>
+
+</html>

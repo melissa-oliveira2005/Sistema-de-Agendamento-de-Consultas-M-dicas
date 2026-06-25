@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Medicos</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+    <h2>Cadastro de Médicos</h2>
+
+    <!-- Mensagem de sucesso -->
+    <div th:if="${mensagem}"
+         class="alert alert-success">
+
+        <span th:text="${mensagem}"></span>
+
+    </div>
+
+    <!-- Formulário -->
+
+    <form th:action="@{/medicos/salvar-medico}"
+        th:object="${medico}"
+        method="post">
+
+        <input type="hidden" th:field="*{id}" />
+
+
+        <div class="mb-3">
+
+            <label>Nome:</label>
+
+            <input type="text" class="form-control" th:field="*{nome}">
+            <div class="text-danger" th:errors="*{nome}"></div>
+
+        </div>
+
+
+        <div class="mb-3">
+
+            <label>CRM:</label>
+
+            <input type="text"
+                   class="form-control"
+                   th:field="*{crm}">
+            <div class="text-danger" th:errors="*{crm}"></div>
+        </div>
+
+
+        <div class="mb-3">
+
+            <label>Especialidade:</label>
+
+            <input type="text"
+                   class="form-control"
+                   th:field="*{especialidade}">
+            <div class="text-danger" th:errors="*{especialidade}"></div>
+        </div>
+
+
+        <div class="mb-3">
+
+            <label>Email:</label>
+
+            <input type="email"
+                   class="form-control"
+                   th:field="*{email}">
+            <div class="text-danger" th:errors="*{email}"></div>
+        </div>
+
+
+        <button type="submit"
+                class="btn btn-primary">
+
+            Salvar
+
+        </button>
+
+    </form>
+
+
+    <hr>
+
+    <h3>Medicos cadastrados</h3>
+
+    <table class="table table-striped">
+
+        <thead>
+
+            <tr>
+
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CRM</th>
+                <th>Especialidade</th>
+                <th>Email</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <hr>
+
+
+    <tbody>
+
+        <tr th:each="medico : ${listaMedicos}">
+
+            <td th:text="${medico.id}"></td>
+            <td th:text="${medico.nome}"></td>
+            <td th:text="${medico.crm}"></td>
+            <td th:text="${medico.especialidade}"></td>
+            <td th:text="${medico.email}"></td>
+
+            <td>
+
+                <a th:href="@{/medicos/excluir/{id}(id=${medico.id})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('Tem certeza que deseja excluir este médico?')">
+
+                    Excluir
+
+                </a>
+
+                <a th:href="@{/medicos/editar/{id}(id=${medico.id})}"
+                   class="btn btn-warning btn-sm">
+
+                    Editar
+
+                </a>
+
+            </td>
+
+        </tr>
+
+    </tbody>
+
+</table>
+
+    <a href="/"
+       class="btn btn-secondary">
+
+       Voltar
+
+    </a>
+
+</div>
+
+</body>
+</html>
