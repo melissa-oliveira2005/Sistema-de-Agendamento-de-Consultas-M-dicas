@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN mvn clean package -DskipTests
+RUN chmod +x mvnw
 
 EXPOSE 8080
 
-CMD ["mvn", "spring-boot:run"]
+CMD ["./mvnw", "spring-boot:run"]
