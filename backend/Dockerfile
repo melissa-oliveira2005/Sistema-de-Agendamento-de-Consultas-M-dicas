@@ -8,4 +8,4 @@ RUN ./mvnw clean package -DskipTests
 
 EXPOSE 8080
 
-CMD ["java","-jar","target/agendamento-medico.jar"]
+CMD ["./mvnw", "spring-boot:run"]
